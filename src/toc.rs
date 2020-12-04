@@ -152,10 +152,11 @@ impl TocElement {
                 children = output
             )
         };
+        let escaped_title = html_escape::encode_text(&self.title);
         format!(
             "<li><a href=\"{link}\">{title}</a>{children}</li>\n",
             link = self.url,
-            title = self.title,
+            title = escaped_title,
             children = children
         )
     }

@@ -439,7 +439,7 @@ impl<Z: Zip> EpubBuilder<Z> {
                     guide,
                     "<reference type=\"{reftype}\" title=\"{title}\" href=\"{href}\" />\n",
                     reftype = reftype,
-                    title = common::escape_quote(content.title.as_str()),
+                    title = html_escape::encode_double_quoted_attribute(content.title.as_str()),
                     href = content.file
                 )?;
             }
@@ -522,7 +522,7 @@ impl<Z: Zip> EpubBuilder<Z> {
                                 {title}</a></li>\n",
                             reftype = reftype,
                             href = file.file,
-                            title = file.title
+                            title = html_escape::encode_text(&file.title),
                         )?;
                     }
                 }
